@@ -3,34 +3,34 @@ import { Linking } from 'react-native';
 import { WebView } from 'react-native-webview';
 
 export const NativeEventTypes = {
-    SUCCESS: 'onTrustlyCheckoutSuccess',
-    ERROR: 'onTrustlyCheckoutError',
-    REDIRECT: 'onTrustlyCheckoutRedirect',
-    ABORT: 'onTrustlyCheckoutAbort'
-  };
+  SUCCESS: 'onTrustlyCheckoutSuccess',
+  ERROR: 'onTrustlyCheckoutError',
+  REDIRECT: 'onTrustlyCheckoutRedirect',
+  ABORT: 'onTrustlyCheckoutAbort'
+};
   
-  export const trustlyApplicationName = 'TrustlyReactNativeWebView/v1';
+export const trustlyApplicationName = 'TrustlyReactNativeWebView/v1';
   
-  export const trustlyCustomBridge = `
-    window.addEventListener('message', (e) => {
-      try {
-        const data = e.data;
-        const message = typeof data !== 'string' ? JSON.stringify(data) : data;
-    
-        if (window.ReactNativeWebView) {
-          window.ReactNativeWebView.postMessage(message, '*');
-        }
-      } catch (e) {
-        console.log('An error occurred while trying to handle message from Trustly SDK listener: ', e.message);
+export const trustlyCustomBridge = `
+  window.addEventListener('message', (e) => {
+    try {
+      const data = e.data;
+      const message = typeof data !== 'string' ? JSON.stringify(data) : data;
+
+      if (window.ReactNativeWebView) {
+        window.ReactNativeWebView.postMessage(message, '*');
       }
-    });
-  
-    /*
-      NOTE: this is required, or you'll sometimes
-      get silent failures
-    */
-    true;
-  `;
+    } catch (e) {
+      console.log('An error occurred while trying to handle message from Trustly SDK listener: ', e.message);
+    }
+  });
+
+  /*
+    NOTE: this is required, or you'll sometimes
+    get silent failures
+  */
+  true;
+`;
 
 const onMessage = (data, onSuccess, onError, onAbort) => {
   try {
