@@ -2,6 +2,8 @@
 
 This package is meant to be integrated into React Native implementations of Trustly's Checkout. The package allows communication between Trustly's Checkout application and React Native's WebView through the `postMessage` method.
 
+Link to NPM: https://www.npmjs.com/package/trustly-react-native-webview
+
 # Content
 
 - [Trustly's ReactNative WebView Package](#trustlys-reactnative-webview-package)
